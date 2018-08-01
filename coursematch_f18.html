@@ -10,7 +10,7 @@
 
 
 
-<meta name="date" content="2018-07-01" />
+<meta name="date" content="2018-07-31" />
 
 <title>CourseMatch Analytics - Fall 2018</title>
 
@@ -272,12 +272,12 @@ div.tocify {
 
 <h1 class="title toc-ignore">CourseMatch Analytics - Fall 2018</h1>
 <h3 class="subtitle"><em>Data Processing for Google Sheet</em></h3>
-<h4 class="date"><em>2018-07-01</em></h4>
+<h4 class="date"><em>2018-07-31</em></h4>
 
 </div>
 
 
-<pre class="r"><code>#setwd(&quot;&lt;inert path&gt;&quot;)
+<pre class="r"><code>#setwd(&quot;&lt;insert path&gt;&quot;)
 
 # knitr options
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, fig.align = 'center',
@@ -294,14 +294,12 @@ pacman::p_load(tidyverse, readxl, stringr, lubridate, googlesheets, rvest, forca
                grid, gridExtra, htmlTable, highcharter)
 
 # Token to connect to Googlespreadsheets
+#token &lt;- gs_auth(cache = FALSE)
+#saveRDS(token, file = &quot;googlesheets_token.rds&quot;)
 suppressMessages(gs_auth(token = &quot;googlesheets_token.rds&quot;, verbose = FALSE))
 
 # Create corresponding folders in working directory
 data_path &lt;- &quot;data/&quot;; viz_path &lt;- &quot;viz/&quot;
-
-# Token to connect to Googlespreadsheets
-#token &lt;- gs_auth(cache = FALSE)
-#saveRDS(token, file = &quot;googlesheets_token.rds&quot;)
 
 #Set ggplot theme
 ggplot2::theme_set(theme_minimal() + 
@@ -332,7 +330,7 @@ options(highcharter.lang = hcoptslang)</code></pre>
 <h1><span class="header-section-number">1</span> Data Acquisition</h1>
 <div id="coursematch-sections" class="section level2">
 <h2><span class="header-section-number">1.1</span> CourseMatch Sections</h2>
-<p>To get all sections listed in CourseMatch, we extract the table from the html. First, save the home CourseMAtch interface page as a .html file in the data folder. Some courses are cross-listed and we create a column to include the other sections a course can be listed as.</p>
+<p>To get all sections listed in CourseMatch, we extract the table from the html. First, save the home CourseMatch interface page as a .html file in the data folder. Some courses are cross-listed and we create a column to include the other sections a course can be listed as.</p>
 <pre class="r"><code># List of sections available for selection within CourseMatch
 coursematch_sections &lt;- 
   read_html(paste0(data_path, &quot;Course Match.html&quot;)) %&gt;%
@@ -545,22 +543,22 @@ Value
 2018
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: center;">
-FNCE
+MGMT
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: center;">
-884
+701
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: center;">
-FNCE884
+MGMT701
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: center;">
-FNCE884002
+MGMT701002
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: left;">
-ADVANCED TOPICS IN PE
+STRAT &amp; COMPET ADVANTAGE
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: left;">
-Yilmaz, Bilge
+Menon, Anoop
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: center;">
 Course
@@ -569,39 +567,39 @@ Course
 Value of Assigned Readings
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: right;">
-3.18
+2.98
 </td>
 </tr>
 <tr style="background-color: #f7f7f7;">
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
-2017
+2018
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
-FNCE
+OIDD
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
-611
+612
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
-FNCE611
+OIDD612
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
-FNCE611701
+OIDD612002
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: left;">
-CORPORATE FINANCE
+BUSINESS ANALYTICS
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: left;">
-Roberts, Michael
+Tsoukalas, Gerry
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
 Course
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: left;">
-Recommend to Non-Major
+Amount of Work Required
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: right;">
-3.2
+2.57
 </td>
 </tr>
 <tr>
@@ -609,22 +607,22 @@ Recommend to Non-Major
 2017
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: center;">
-BEPP
+FNCE
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: center;">
-823
+613
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: center;">
-BEPP823
+FNCE613
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: center;">
-BEPP823401
+FNCE613006
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: left;">
-BUS INSR &amp; EST PLNG
+MACROECN &amp; GLOBAL ECONOM
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: left;">
-Gaglianese, Richard
+Landry, Anthony
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: center;">
 Instructor
@@ -633,7 +631,7 @@ Instructor
 Ability to Communicate Subject Matter
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: right;">
-1
+2.94
 </td>
 </tr>
 <tr style="background-color: #f7f7f7;">
@@ -641,95 +639,31 @@ Ability to Communicate Subject Matter
 2017
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
-MGMT
-</td>
-<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
-611
-</td>
-<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
-MGMT611
-</td>
-<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
-MGMT611001
-</td>
-<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: left;">
-MANAGING EST ENTERPRISE: Managing the Established Enterprise
-</td>
-<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: left;">
-MacDuffie, John Paul
-</td>
-<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
-Course
-</td>
-<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: left;">
-Recommend to Major?
-</td>
-<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: right;">
-2.58
-</td>
-</tr>
-<tr>
-<td style="padding-left: .5em; padding-right: .5em; text-align: center;">
-2017
-</td>
-<td style="padding-left: .5em; padding-right: .5em; text-align: center;">
 LGST
 </td>
-<td style="padding-left: .5em; padding-right: .5em; text-align: center;">
+<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
 612
 </td>
-<td style="padding-left: .5em; padding-right: .5em; text-align: center;">
+<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
 LGST612
 </td>
-<td style="padding-left: .5em; padding-right: .5em; text-align: center;">
-LGST612004
+<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
+LGST612001
 </td>
-<td style="padding-left: .5em; padding-right: .5em; text-align: left;">
+<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: left;">
 RESPONSIBILITY IN BUS.
 </td>
-<td style="padding-left: .5em; padding-right: .5em; text-align: left;">
-Zaring, David
-</td>
-<td style="padding-left: .5em; padding-right: .5em; text-align: center;">
-Instructor
-</td>
-<td style="padding-left: .5em; padding-right: .5em; text-align: left;">
-Instructor Accessibility
-</td>
-<td style="padding-left: .5em; padding-right: .5em; text-align: right;">
-2.61
-</td>
-</tr>
-<tr style="background-color: #f7f7f7;">
-<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
-2017
-</td>
-<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
-MGMT
-</td>
-<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
-715
-</td>
-<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
-MGMT715
-</td>
-<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
-MGMT715001
-</td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: left;">
-POL &amp; SOC ENVIRON OF MM
-</td>
-<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: left;">
-Gatignon, Aline
+Werbach, Kevin
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
 Course
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: left;">
-Recommend to Major?
+Recommend to Non-Major
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: right;">
-2.47
+2.67
 </td>
 </tr>
 <tr>
@@ -740,28 +674,92 @@ Recommend to Major?
 MKTG
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: center;">
-612
+770
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: center;">
-MKTG612
+MKTG770
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: center;">
-MKTG612004
+MKTG770402
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: left;">
-DYNAMIC MKTG STRATEGY
+Digital Marketing, Social Media and E-Commerce
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: left;">
-Van den Bulte, Christophe
+Berman, Ron
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: center;">
 Instructor
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: left;">
-Instructor Quality
+Instructor Accessibility
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: right;">
-1.91
+3.3
+</td>
+</tr>
+<tr style="background-color: #f7f7f7;">
+<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
+2018
+</td>
+<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
+MGMT
+</td>
+<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
+613
+</td>
+<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
+MGMT613
+</td>
+<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
+MGMT613751
+</td>
+<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: left;">
+MANAG ESTAB ENTERPRISE
+</td>
+<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: left;">
+Siggelkow, Nicolaj
+</td>
+<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
+Course
+</td>
+<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: left;">
+Amount Learned
+</td>
+<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: right;">
+3.61
+</td>
+</tr>
+<tr>
+<td style="padding-left: .5em; padding-right: .5em; text-align: center;">
+2017
+</td>
+<td style="padding-left: .5em; padding-right: .5em; text-align: center;">
+OIDD
+</td>
+<td style="padding-left: .5em; padding-right: .5em; text-align: center;">
+690
+</td>
+<td style="padding-left: .5em; padding-right: .5em; text-align: center;">
+OIDD690
+</td>
+<td style="padding-left: .5em; padding-right: .5em; text-align: center;">
+OIDD690402
+</td>
+<td style="padding-left: .5em; padding-right: .5em; text-align: left;">
+MANAG DECSN MAKING
+</td>
+<td style="padding-left: .5em; padding-right: .5em; text-align: left;">
+Milkman, Katherine
+</td>
+<td style="padding-left: .5em; padding-right: .5em; text-align: center;">
+Course
+</td>
+<td style="padding-left: .5em; padding-right: .5em; text-align: left;">
+Amount Learned
+</td>
+<td style="padding-left: .5em; padding-right: .5em; text-align: right;">
+3.4
 </td>
 </tr>
 <tr style="background-color: #f7f7f7;">
@@ -769,31 +767,31 @@ Instructor Quality
 2017
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
-FNCE
+MKTG
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
-726
+893
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
-FNCE726
+MKTG893
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
-FNCE726403
+MKTG893402
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: left;">
-ADVANCED CORP FINANCE
+MKTG in Emerging Economies: Understanding &amp; MKTG to the Chinese Consumer
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: left;">
-Kisin, Roni
+Zhang, John
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
-Course
+Instructor
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: left;">
-Recommend to Major?
+Ability to Stimulate Interest
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: right;">
-3.6
+3.27
 </td>
 </tr>
 <tr>
@@ -804,60 +802,60 @@ Recommend to Major?
 FNCE
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: center;">
-883
+728
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: center;">
-FNCE883
+FNCE728
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: center;">
-FNCE883001
+FNCE728001
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: left;">
-ASP - STRATEGIC EQUITY FINANCE
+CORPORATE VALUATION
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: left;">
-Erickson, David
+Glode, Vincent
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: center;">
 Course
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: left;">
-Recommend to Major?
+Amount of Work Required
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: right;">
-3.14
+3.48
 </td>
 </tr>
 <tr style="background-color: #f7f7f7;">
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; border-bottom: 2px solid grey; text-align: center;">
-2017
+2018
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; border-bottom: 2px solid grey; text-align: center;">
-MGMT
+ACCT
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; border-bottom: 2px solid grey; text-align: center;">
-811
+747
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; border-bottom: 2px solid grey; text-align: center;">
-MGMT811
+ACCT747
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; border-bottom: 2px solid grey; text-align: center;">
-MGMT811002
+ACCT747001
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; border-bottom: 2px solid grey; text-align: left;">
-ENTREP THROUGH ACQUIS.: Entrepreneurship through Acquisitions
+FIN STATEMENT &amp; DIS ANA
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; border-bottom: 2px solid grey; text-align: left;">
-Chalfin, Robert
+Bushee, Brian
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; border-bottom: 2px solid grey; text-align: center;">
 Course
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; border-bottom: 2px solid grey; text-align: left;">
-Course Quality
+Recommend to Non-Major
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; border-bottom: 2px solid grey; text-align: right;">
-2.48
+2.49
 </td>
 </tr>
 </tbody>
@@ -1056,8 +1054,8 @@ course_quality_to_price %&gt;%
     hc_theme(colors = wharton_col[c('wharton_blue','wharton_red','bay_blue','morning_yellow','college_grey',
                                     'evening_red','sunset_red','night_street','marine_grey','heritage_red')] %&gt;% unname()))) %&gt;%
   hc_size(height = 700)</code></pre>
-<div id="htmlwidget-5c65ebf285101e903df9" style="width:100%;height:700px;" class="highchart html-widget"></div>
-<script type="application/json" data-for="htmlwidget-5c65ebf285101e903df9">{"x":{"hc_opts":{"title":{"text":"Which course is the \"best bang for your utility\"?"},"yAxis":{"title":{"text":"Average Course Quality"},"type":"linear"},"credits":{"enabled":true,"text":"Source: Spring 2016 to Spring 2017"},"exporting":{"enabled":false},"plotOptions":{"series":{"turboThreshold":0,"showInLegend":true,"marker":{"enabled":true}},"treemap":{"layoutAlgorithm":"squarified"},"bubble":{"minSize":5,"maxSize":25},"scatter":{"marker":{"symbol":"circle"}}},"annotationsOptions":{"enabledButtons":false},"tooltip":{"delayForDisplay":10,"pointFormat":"<span style=\"color:{series.color}\">{point.course}<\/span>:{point.title}<br/>\n             Clearing Price: <b>{point.x:,.1f}<\/b><br/>\n             Course Quality: <b>{point.y:,.2f}<\/b><br/>","shared":true},"series":[{"name":"ACCT","data":[{"Course":"ACCT611","Title":"Financial Accounting","quality":2.8,"clearing_price":0,"title_length":97,"dept":"ACCT","x":0,"y":2.8,"course":"ACCT611","title":"Financial Accounting"},{"Course":"ACCT612","Title":"Accelerated Fin Acct","quality":2.48666666666667,"clearing_price":0,"title_length":97,"dept":"ACCT","x":0,"y":2.48666666666667,"course":"ACCT612","title":"Accelerated Fin Acct"},{"Course":"ACCT613","Title":"Fin And Mngl Acct","quality":2.82857142857143,"clearing_price":527.113125,"title_length":97,"dept":"ACCT","x":527.113125,"y":2.82857142857143,"course":"ACCT613","title":"Fin And Mngl Acct"},{"Course":"ACCT742","Title":"Fin Report & Bus Analys","quality":2.70555555555556,"clearing_price":0,"title_length":97,"dept":"ACCT","x":0,"y":2.70555555555556,"course":"ACCT742","title":"Fin Report & Bus Analys"},{"Course":"ACCT743","Title":"Acct For Complx Fin Stru","quality":2.16,"clearing_price":0,"title_length":97,"dept":"ACCT","x":0,"y":2.16,"course":"ACCT743","title":"Acct For Complx Fin Stru"}],"type":"scatter"},{"name":"BEPP","data":[{"Course":"BEPP770","Title":"Public Finance & Policy","quality":2.56333333333333,"clearing_price":0,"title_length":97,"dept":"BEPP","x":0,"y":2.56333333333333,"course":"BEPP770","title":"Public Finance & Policy"},{"Course":"BEPP805","Title":"Risk Management","quality":2.06466666666667,"clearing_price":0,"title_length":97,"dept":"BEPP","x":0,"y":2.06466666666667,"course":"BEPP805","title":"Risk Management"}],"type":"scatter"},{"name":"FNCE","data":[{"Course":"FNCE611","Title":"Corporate Finance","quality":2.86192307692308,"clearing_price":463.391,"title_length":97,"dept":"FNCE","x":463.391,"y":2.86192307692308,"course":"FNCE611","title":"Corporate Finance"},{"Course":"FNCE615","Title":"Macroeconomics (Half Cu)","quality":1.39333333333333,"clearing_price":858.26,"title_length":97,"dept":"FNCE","x":858.26,"y":1.39333333333333,"course":"FNCE615","title":"Macroeconomics (Half Cu)"},{"Course":"FNCE717","Title":"Financial Derivatives","quality":3.0975,"clearing_price":0,"title_length":97,"dept":"FNCE","x":0,"y":3.0975,"course":"FNCE717","title":"Financial Derivatives"},{"Course":"FNCE719","Title":"Intl Financial Markets","quality":2.625,"clearing_price":0,"title_length":97,"dept":"FNCE","x":0,"y":2.625,"course":"FNCE719","title":"Intl Financial Markets"},{"Course":"FNCE720","Title":"Investment Management","quality":2.234,"clearing_price":0,"title_length":97,"dept":"FNCE","x":0,"y":2.234,"course":"FNCE720","title":"Investment Management"},{"Course":"FNCE721","Title":"Real Estate Investments","quality":3.02818181818182,"clearing_price":143.451428571429,"title_length":97,"dept":"FNCE","x":143.451428571429,"y":3.02818181818182,"course":"FNCE721","title":"Real Estate Investments"},{"Course":"FNCE725","Title":"Fixed Income Securities","quality":3.16,"clearing_price":0,"title_length":97,"dept":"FNCE","x":0,"y":3.16,"course":"FNCE725","title":"Fixed Income Securities"},{"Course":"FNCE726","Title":"Advanced Corp Finance","quality":2.94875,"clearing_price":0,"title_length":97,"dept":"FNCE","x":0,"y":2.94875,"course":"FNCE726","title":"Advanced Corp Finance"},{"Course":"FNCE728","Title":"Corporate Valuation","quality":2.83428571428571,"clearing_price":2829.78166666667,"title_length":97,"dept":"FNCE","x":2829.78166666667,"y":2.83428571428571,"course":"FNCE728","title":"Corporate Valuation"},{"Course":"FNCE731","Title":"Internatl Corp Finance","quality":3.12,"clearing_price":0,"title_length":97,"dept":"FNCE","x":0,"y":3.12,"course":"FNCE731","title":"Internatl Corp Finance"},{"Course":"FNCE738","Title":"Capital Markets","quality":2.686,"clearing_price":0,"title_length":97,"dept":"FNCE","x":0,"y":2.686,"course":"FNCE738","title":"Capital Markets"},{"Course":"FNCE750","Title":"Vent Cap & Fnce Innovat","quality":2.64714285714286,"clearing_price":1783.20833333333,"title_length":97,"dept":"FNCE","x":1783.20833333333,"y":2.64714285714286,"course":"FNCE750","title":"Vent Cap & Fnce Innovat"},{"Course":"FNCE751","Title":"Fnce Of Buyouts & Acqs","quality":2.36230769230769,"clearing_price":788.74125,"title_length":97,"dept":"FNCE","x":788.74125,"y":2.36230769230769,"course":"FNCE751","title":"Fnce Of Buyouts & Acqs"},{"Course":"FNCE891","Title":"Asp-Corporate Restucturing And Distress Investing","quality":3.2,"clearing_price":736.94,"title_length":97,"dept":"FNCE","x":736.94,"y":3.2,"course":"FNCE891","title":"Asp-Corporate Restucturing And Distress Investing"},{"Course":"FNCE893","Title":"Policy Decisions By Central Banks: The Fed, The Ecb And The Boi","quality":2.53,"clearing_price":0,"title_length":97,"dept":"FNCE","x":0,"y":2.53,"course":"FNCE893","title":"Policy Decisions By Central Banks: The Fed, The Ecb And The Boi"}],"type":"scatter"},{"name":"HCMG","data":[{"Course":"HCMG849","Title":"Fin Mgmt Health Inst","quality":2.08,"clearing_price":0,"title_length":97,"dept":"HCMG","x":0,"y":2.08,"course":"HCMG849","title":"Fin Mgmt Health Inst"},{"Course":"HCMG850","Title":"Health Care Reform And The Future Of The American Health System","quality":3.17,"clearing_price":0,"title_length":97,"dept":"HCMG","x":0,"y":3.17,"course":"HCMG850","title":"Health Care Reform And The Future Of The American Health System"},{"Course":"HCMG853","Title":"Management And Strategy In Medical Devices And Technology","quality":3.11,"clearing_price":0,"title_length":97,"dept":"HCMG","x":0,"y":3.11,"course":"HCMG853","title":"Management And Strategy In Medical Devices And Technology"},{"Course":"HCMG855","Title":"Mgmt Hlth Cre For Eldrly","quality":2.75,"clearing_price":0,"title_length":97,"dept":"HCMG","x":0,"y":2.75,"course":"HCMG855","title":"Mgmt Hlth Cre For Eldrly"}],"type":"scatter"},{"name":"LGST","data":[{"Course":"LGST611","Title":"Resp In Global Mgmt","quality":2.75846153846154,"clearing_price":252.491904761905,"title_length":97,"dept":"LGST","x":252.491904761905,"y":2.75846153846154,"course":"LGST611","title":"Resp In Global Mgmt"},{"Course":"LGST612","Title":"Responsibility In Bus.","quality":2.73818181818182,"clearing_price":326.817391304348,"title_length":97,"dept":"LGST","x":326.817391304348,"y":2.73818181818182,"course":"LGST612","title":"Responsibility In Bus."},{"Course":"LGST642","Title":"Big Data, Big Resp.","quality":2.27,"clearing_price":299.8,"title_length":97,"dept":"LGST","x":299.8,"y":2.27,"course":"LGST642","title":"Big Data, Big Resp."},{"Course":"LGST693","Title":"Influence","quality":3.415,"clearing_price":2958.7375,"title_length":97,"dept":"LGST","x":2958.7375,"y":3.415,"course":"LGST693","title":"Influence"},{"Course":"LGST806","Title":"Negotiations","quality":3.05428571428571,"clearing_price":1127.13884615385,"title_length":97,"dept":"LGST","x":1127.13884615385,"y":3.05428571428571,"course":"LGST806","title":"Negotiations"},{"Course":"LGST809","Title":"Sports Businss Mgmt.","quality":2.05,"clearing_price":0,"title_length":97,"dept":"LGST","x":0,"y":2.05,"course":"LGST809","title":"Sports Businss Mgmt."},{"Course":"LGST813","Title":"Leg Asp Entreprenrshp: Legal And Transactional Aspects Of Entrepreneurship","quality":3.282,"clearing_price":905.09,"title_length":97,"dept":"LGST","x":905.09,"y":3.282,"course":"LGST813","title":"Leg Asp Entreprenrshp: Legal And Transactional Aspects Of Entrepreneurship"}],"type":"scatter"},{"name":"MGMT","data":[{"Course":"MGMT611","Title":"Managing Est Enterprise: Managing The Established Enterprise","quality":2.690625,"clearing_price":1082.921875,"title_length":97,"dept":"MGMT","x":1082.921875,"y":2.690625,"course":"MGMT611","title":"Managing Est Enterprise: Managing The Established Enterprise"},{"Course":"MGMT612","Title":"Managing Emerg Entrprse: Managing The Emerging Enterprise","quality":2.59933333333333,"clearing_price":160.465,"title_length":97,"dept":"MGMT","x":160.465,"y":2.59933333333333,"course":"MGMT612","title":"Managing Emerg Entrprse: Managing The Emerging Enterprise"},{"Course":"MGMT624","Title":"Leading Diversity In Org","quality":2.75,"clearing_price":0,"title_length":97,"dept":"MGMT","x":0,"y":2.75,"course":"MGMT624","title":"Leading Diversity In Org"},{"Course":"MGMT690","Title":"Managerial Decisn Making","quality":2.59142857142857,"clearing_price":2398.696,"title_length":97,"dept":"MGMT","x":2398.696,"y":2.59142857142857,"course":"MGMT690","title":"Managerial Decisn Making"},{"Course":"MGMT691","Title":"Negotiations","quality":3.05428571428571,"clearing_price":1127.13884615385,"title_length":97,"dept":"MGMT","x":1127.13884615385,"y":3.05428571428571,"course":"MGMT691","title":"Negotiations"},{"Course":"MGMT701","Title":"Strat & Compet Advantage: Strategy And Competitive Advantage","quality":3.41428571428571,"clearing_price":2517.34875,"title_length":97,"dept":"MGMT","x":2517.34875,"y":3.41428571428571,"course":"MGMT701","title":"Strat & Compet Advantage: Strategy And Competitive Advantage"},{"Course":"MGMT711","Title":"Comp Str/Ind Str","quality":2.2,"clearing_price":0,"title_length":97,"dept":"MGMT","x":0,"y":2.2,"course":"MGMT711","title":"Comp Str/Ind Str"},{"Course":"MGMT714","Title":"Value Creation & Value Capture In American Business History","quality":1.9,"clearing_price":0,"title_length":97,"dept":"MGMT","x":0,"y":1.9,"course":"MGMT714","title":"Value Creation & Value Capture In American Business History"},{"Course":"MGMT721","Title":"Corp Dev: Merg & Acquis","quality":2.797,"clearing_price":210.81375,"title_length":97,"dept":"MGMT","x":210.81375,"y":2.797,"course":"MGMT721","title":"Corp Dev: Merg & Acquis"},{"Course":"MGMT729","Title":"Intel Property Strategyy","quality":2.35,"clearing_price":0,"title_length":97,"dept":"MGMT","x":0,"y":2.35,"course":"MGMT729","title":"Intel Property Strategyy"},{"Course":"MGMT731","Title":"Technology Strategy","quality":2.77,"clearing_price":13.345,"title_length":97,"dept":"MGMT","x":13.345,"y":2.77,"course":"MGMT731","title":"Technology Strategy"},{"Course":"MGMT784","Title":"Managerial Econ & Game","quality":1.935,"clearing_price":0,"title_length":97,"dept":"MGMT","x":0,"y":1.935,"course":"MGMT784","title":"Managerial Econ & Game"},{"Course":"MGMT801","Title":"Entrepreneurship","quality":2.69384615384615,"clearing_price":273.171764705882,"title_length":97,"dept":"MGMT","x":273.171764705882,"y":2.69384615384615,"course":"MGMT801","title":"Entrepreneurship"},{"Course":"MGMT804","Title":"Venture Cap & Ent Mgmt","quality":2.667,"clearing_price":224.23875,"title_length":97,"dept":"MGMT","x":224.23875,"y":2.667,"course":"MGMT804","title":"Venture Cap & Ent Mgmt"},{"Course":"MGMT806","Title":"Venture Implementation","quality":2.306,"clearing_price":130.064,"title_length":97,"dept":"MGMT","x":130.064,"y":2.306,"course":"MGMT806","title":"Venture Implementation"},{"Course":"MGMT811","Title":"Entrep Through Acquis.","quality":2.61111111111111,"clearing_price":0,"title_length":97,"dept":"MGMT","x":0,"y":2.61111111111111,"course":"MGMT811","title":"Entrep Through Acquis."},{"Course":"MGMT815","Title":"Sports Businss Mgmt.","quality":2.05,"clearing_price":0,"title_length":97,"dept":"MGMT","x":0,"y":2.05,"course":"MGMT815","title":"Sports Businss Mgmt."}],"type":"scatter"},{"name":"MKTG","data":[{"Course":"MKTG612","Title":"Dynamic Mktg Strategy","quality":2.33916666666667,"clearing_price":587.584375,"title_length":97,"dept":"MKTG","x":587.584375,"y":2.33916666666667,"course":"MKTG612","title":"Dynamic Mktg Strategy"},{"Course":"MKTG712","Title":"Data & Anlz For Mktg Dec","quality":2.48285714285714,"clearing_price":952.587142857143,"title_length":97,"dept":"MKTG","x":952.587142857143,"y":2.48285714285714,"course":"MKTG712","title":"Data & Anlz For Mktg Dec"},{"Course":"MKTG734","Title":"Idea Generation And The Systematic Approach For Creativity","quality":3.23,"clearing_price":483.845,"title_length":97,"dept":"MKTG","x":483.845,"y":3.23,"course":"MKTG734","title":"Idea Generation And The Systematic Approach For Creativity"},{"Course":"MKTG741","Title":"Entrepreneurial Mktg","quality":2.975,"clearing_price":52.1766666666667,"title_length":97,"dept":"MKTG","x":52.1766666666667,"y":2.975,"course":"MKTG741","title":"Entrepreneurial Mktg"},{"Course":"MKTG771","Title":"Models For Mktg Strategy","quality":1.79,"clearing_price":2758.66,"title_length":97,"dept":"MKTG","x":2758.66,"y":1.79,"course":"MKTG771","title":"Models For Mktg Strategy"}],"type":"scatter"},{"name":"OIDD","data":[{"Course":"OIDD515","Title":"Product Design","quality":2.72083333333333,"clearing_price":3892.41,"title_length":97,"dept":"OIDD","x":3892.41,"y":2.72083333333333,"course":"OIDD515","title":"Product Design"},{"Course":"OIDD611","Title":"Quality And Productivity: Managing The Productive Core: Quality And Productivity","quality":3.12181818181818,"clearing_price":681.913333333333,"title_length":97,"dept":"OIDD","x":681.913333333333,"y":3.12181818181818,"course":"OIDD611","title":"Quality And Productivity: Managing The Productive Core: Quality And Productivity"},{"Course":"OIDD612","Title":"Business Analytics","quality":2.82125,"clearing_price":1250.94,"title_length":97,"dept":"OIDD","x":1250.94,"y":2.82125,"course":"OIDD612","title":"Business Analytics"},{"Course":"OIDD613","Title":"Info & Bus Transfrm: Online Innovation: New Patterns Of Power And Profit","quality":1.8025,"clearing_price":0,"title_length":97,"dept":"OIDD","x":0,"y":1.8025,"course":"OIDD613","title":"Info & Bus Transfrm: Online Innovation: New Patterns Of Power And Profit"},{"Course":"OIDD615","Title":"Operations Strategy","quality":2.92227272727273,"clearing_price":898.650555555556,"title_length":97,"dept":"OIDD","x":898.650555555556,"y":2.92227272727273,"course":"OIDD615","title":"Operations Strategy"},{"Course":"OIDD662","Title":"Enabling Technologies: Enabling Technologies","quality":3.005,"clearing_price":849.92,"title_length":97,"dept":"OIDD","x":849.92,"y":3.005,"course":"OIDD662","title":"Enabling Technologies: Enabling Technologies"},{"Course":"OIDD673","Title":"Global Supply Chain Mgmt","quality":2.62,"clearing_price":0,"title_length":97,"dept":"OIDD","x":0,"y":2.62,"course":"OIDD673","title":"Global Supply Chain Mgmt"},{"Course":"OIDD690","Title":"Managerial Decisn Making","quality":2.59142857142857,"clearing_price":2398.696,"title_length":97,"dept":"OIDD","x":2398.696,"y":2.59142857142857,"course":"OIDD690","title":"Managerial Decisn Making"},{"Course":"OIDD691","Title":"Negotiations","quality":3.05428571428571,"clearing_price":1127.13884615385,"title_length":97,"dept":"OIDD","x":1127.13884615385,"y":3.05428571428571,"course":"OIDD691","title":"Negotiations"},{"Course":"OIDD693","Title":"Influence","quality":3.415,"clearing_price":2958.7375,"title_length":97,"dept":"OIDD","x":2958.7375,"y":3.415,"course":"OIDD693","title":"Influence"}],"type":"scatter"},{"name":"REAL","data":[{"Course":"REAL721","Title":"Real Estate Investments","quality":3.02818181818182,"clearing_price":143.451428571429,"title_length":97,"dept":"REAL","x":143.451428571429,"y":3.02818181818182,"course":"REAL721","title":"Real Estate Investments"},{"Course":"REAL821","Title":"Real Estate Development","quality":3.18,"clearing_price":1980.7275,"title_length":97,"dept":"REAL","x":1980.7275,"y":3.18,"course":"REAL821","title":"Real Estate Development"},{"Course":"REAL890","Title":"Int'l Real Est Comparisn","quality":2.85,"clearing_price":0,"title_length":97,"dept":"REAL","x":0,"y":2.85,"course":"REAL890","title":"Int'l Real Est Comparisn"},{"Course":"REAL891","Title":"Real Estate Entrepreneur","quality":2.955,"clearing_price":354.92,"title_length":97,"dept":"REAL","x":354.92,"y":2.955,"course":"REAL891","title":"Real Estate Entrepreneur"}],"type":"scatter"},{"name":"STAT","data":[{"Course":"STAT701","Title":"Modern Data Mining","quality":2.99333333333333,"clearing_price":2434.978,"title_length":97,"dept":"STAT","x":2434.978,"y":2.99333333333333,"course":"STAT701","title":"Modern Data Mining"},{"Course":"STAT705","Title":"Stat Computing With R: Statistical Computing With R","quality":2.59111111111111,"clearing_price":115.571538461538,"title_length":97,"dept":"STAT","x":115.571538461538,"y":2.59111111111111,"course":"STAT705","title":"Stat Computing With R: Statistical Computing With R"},{"Course":"STAT711","Title":"Forecasting Methods Mgmt","quality":1.86,"clearing_price":1291.73,"title_length":97,"dept":"STAT","x":1291.73,"y":1.86,"course":"STAT711","title":"Forecasting Methods Mgmt"},{"Course":"STAT722","Title":"Predictive Analytics: Predictive Analytics For Business","quality":2.686,"clearing_price":151.428333333333,"title_length":97,"dept":"STAT","x":151.428333333333,"y":2.686,"course":"STAT722","title":"Predictive Analytics: Predictive Analytics For Business"},{"Course":"STAT770","Title":"Data Analy & Stat Comp: Data Analytics And Statistical Computing","quality":2.505,"clearing_price":1143.465,"title_length":97,"dept":"STAT","x":1143.465,"y":2.505,"course":"STAT770","title":"Data Analy & Stat Comp: Data Analytics And Statistical Computing"},{"Course":"STAT851","Title":"Fund Of Actuarial Sci I","quality":2.8,"clearing_price":0,"title_length":97,"dept":"STAT","x":0,"y":2.8,"course":"STAT851","title":"Fund Of Actuarial Sci I"},{"Course":"STAT853","Title":"Actuarial Statistics","quality":2.92,"clearing_price":0,"title_length":97,"dept":"STAT","x":0,"y":2.92,"course":"STAT853","title":"Actuarial Statistics"}],"type":"scatter"}],"xAxis":{"type":"linear","title":{"text":"Average Clearing Price"}},"subtitle":{"text":"Value courses are in the top left corner"}},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#004785","#A90533","#06AAFC","#D7BC6A","#B2B6A7","#532A85","#96227D","#2D2C41","EEEDEA","#C5093B"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","B","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":",","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-47cf1a6e119c5bfc05bd" style="width:100%;height:700px;" class="highchart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-47cf1a6e119c5bfc05bd">{"x":{"hc_opts":{"title":{"text":"Which course is the \"best bang for your utility\"?"},"yAxis":{"title":{"text":"Average Course Quality"},"type":"linear"},"credits":{"enabled":true,"text":"Source: Spring 2016 to Spring 2017"},"exporting":{"enabled":false},"plotOptions":{"series":{"turboThreshold":0,"showInLegend":true,"marker":{"enabled":true}},"treemap":{"layoutAlgorithm":"squarified"},"bubble":{"minSize":5,"maxSize":25},"scatter":{"marker":{"symbol":"circle"}}},"annotationsOptions":{"enabledButtons":false},"tooltip":{"delayForDisplay":10,"pointFormat":"<span style=\"color:{series.color}\">{point.course}<\/span>:{point.title}<br/>\n             Clearing Price: <b>{point.x:,.1f}<\/b><br/>\n             Course Quality: <b>{point.y:,.2f}<\/b><br/>","shared":true},"series":[{"name":"ACCT","data":[{"Course":"ACCT611","Title":"Financial Accounting","quality":2.8,"clearing_price":0,"title_length":97,"dept":"ACCT","x":0,"y":2.8,"course":"ACCT611","title":"Financial Accounting"},{"Course":"ACCT612","Title":"Accelerated Fin Acct","quality":2.48666666666667,"clearing_price":0,"title_length":97,"dept":"ACCT","x":0,"y":2.48666666666667,"course":"ACCT612","title":"Accelerated Fin Acct"},{"Course":"ACCT613","Title":"Fin And Mngl Acct","quality":2.82857142857143,"clearing_price":527.113125,"title_length":97,"dept":"ACCT","x":527.113125,"y":2.82857142857143,"course":"ACCT613","title":"Fin And Mngl Acct"},{"Course":"ACCT742","Title":"Fin Report & Bus Analys","quality":2.70555555555556,"clearing_price":0,"title_length":97,"dept":"ACCT","x":0,"y":2.70555555555556,"course":"ACCT742","title":"Fin Report & Bus Analys"},{"Course":"ACCT743","Title":"Acct For Complx Fin Stru","quality":2.16,"clearing_price":0,"title_length":97,"dept":"ACCT","x":0,"y":2.16,"course":"ACCT743","title":"Acct For Complx Fin Stru"}],"type":"scatter"},{"name":"BEPP","data":[{"Course":"BEPP770","Title":"Public Finance & Policy","quality":2.56333333333333,"clearing_price":0,"title_length":97,"dept":"BEPP","x":0,"y":2.56333333333333,"course":"BEPP770","title":"Public Finance & Policy"},{"Course":"BEPP805","Title":"Risk Management","quality":2.06466666666667,"clearing_price":0,"title_length":97,"dept":"BEPP","x":0,"y":2.06466666666667,"course":"BEPP805","title":"Risk Management"}],"type":"scatter"},{"name":"FNCE","data":[{"Course":"FNCE611","Title":"Corporate Finance","quality":2.86192307692308,"clearing_price":463.391,"title_length":97,"dept":"FNCE","x":463.391,"y":2.86192307692308,"course":"FNCE611","title":"Corporate Finance"},{"Course":"FNCE615","Title":"Macroeconomics (Half Cu)","quality":1.39333333333333,"clearing_price":858.26,"title_length":97,"dept":"FNCE","x":858.26,"y":1.39333333333333,"course":"FNCE615","title":"Macroeconomics (Half Cu)"},{"Course":"FNCE717","Title":"Financial Derivatives","quality":3.0975,"clearing_price":0,"title_length":97,"dept":"FNCE","x":0,"y":3.0975,"course":"FNCE717","title":"Financial Derivatives"},{"Course":"FNCE719","Title":"Intl Financial Markets","quality":2.625,"clearing_price":0,"title_length":97,"dept":"FNCE","x":0,"y":2.625,"course":"FNCE719","title":"Intl Financial Markets"},{"Course":"FNCE720","Title":"Investment Management","quality":2.234,"clearing_price":0,"title_length":97,"dept":"FNCE","x":0,"y":2.234,"course":"FNCE720","title":"Investment Management"},{"Course":"FNCE721","Title":"Real Estate Investments","quality":3.02818181818182,"clearing_price":143.451428571429,"title_length":97,"dept":"FNCE","x":143.451428571429,"y":3.02818181818182,"course":"FNCE721","title":"Real Estate Investments"},{"Course":"FNCE725","Title":"Fixed Income Securities","quality":3.16,"clearing_price":0,"title_length":97,"dept":"FNCE","x":0,"y":3.16,"course":"FNCE725","title":"Fixed Income Securities"},{"Course":"FNCE726","Title":"Advanced Corp Finance","quality":2.94875,"clearing_price":0,"title_length":97,"dept":"FNCE","x":0,"y":2.94875,"course":"FNCE726","title":"Advanced Corp Finance"},{"Course":"FNCE728","Title":"Corporate Valuation","quality":2.83428571428571,"clearing_price":2829.78166666667,"title_length":97,"dept":"FNCE","x":2829.78166666667,"y":2.83428571428571,"course":"FNCE728","title":"Corporate Valuation"},{"Course":"FNCE731","Title":"Internatl Corp Finance","quality":3.12,"clearing_price":0,"title_length":97,"dept":"FNCE","x":0,"y":3.12,"course":"FNCE731","title":"Internatl Corp Finance"},{"Course":"FNCE738","Title":"Capital Markets","quality":2.686,"clearing_price":0,"title_length":97,"dept":"FNCE","x":0,"y":2.686,"course":"FNCE738","title":"Capital Markets"},{"Course":"FNCE750","Title":"Vent Cap & Fnce Innovat","quality":2.64714285714286,"clearing_price":1783.20833333333,"title_length":97,"dept":"FNCE","x":1783.20833333333,"y":2.64714285714286,"course":"FNCE750","title":"Vent Cap & Fnce Innovat"},{"Course":"FNCE751","Title":"Fnce Of Buyouts & Acqs","quality":2.36230769230769,"clearing_price":788.74125,"title_length":97,"dept":"FNCE","x":788.74125,"y":2.36230769230769,"course":"FNCE751","title":"Fnce Of Buyouts & Acqs"},{"Course":"FNCE891","Title":"Asp-Corporate Restucturing And Distress Investing","quality":3.2,"clearing_price":736.94,"title_length":97,"dept":"FNCE","x":736.94,"y":3.2,"course":"FNCE891","title":"Asp-Corporate Restucturing And Distress Investing"},{"Course":"FNCE893","Title":"Policy Decisions By Central Banks: The Fed, The Ecb And The Boi","quality":2.53,"clearing_price":0,"title_length":97,"dept":"FNCE","x":0,"y":2.53,"course":"FNCE893","title":"Policy Decisions By Central Banks: The Fed, The Ecb And The Boi"}],"type":"scatter"},{"name":"HCMG","data":[{"Course":"HCMG849","Title":"Fin Mgmt Health Inst","quality":2.08,"clearing_price":0,"title_length":97,"dept":"HCMG","x":0,"y":2.08,"course":"HCMG849","title":"Fin Mgmt Health Inst"},{"Course":"HCMG850","Title":"Health Care Reform And The Future Of The American Health System","quality":3.17,"clearing_price":0,"title_length":97,"dept":"HCMG","x":0,"y":3.17,"course":"HCMG850","title":"Health Care Reform And The Future Of The American Health System"},{"Course":"HCMG853","Title":"Management And Strategy In Medical Devices And Technology","quality":3.11,"clearing_price":0,"title_length":97,"dept":"HCMG","x":0,"y":3.11,"course":"HCMG853","title":"Management And Strategy In Medical Devices And Technology"},{"Course":"HCMG855","Title":"Mgmt Hlth Cre For Eldrly","quality":2.75,"clearing_price":0,"title_length":97,"dept":"HCMG","x":0,"y":2.75,"course":"HCMG855","title":"Mgmt Hlth Cre For Eldrly"}],"type":"scatter"},{"name":"LGST","data":[{"Course":"LGST611","Title":"Resp In Global Mgmt","quality":2.75846153846154,"clearing_price":252.491904761905,"title_length":97,"dept":"LGST","x":252.491904761905,"y":2.75846153846154,"course":"LGST611","title":"Resp In Global Mgmt"},{"Course":"LGST612","Title":"Responsibility In Bus.","quality":2.73818181818182,"clearing_price":326.817391304348,"title_length":97,"dept":"LGST","x":326.817391304348,"y":2.73818181818182,"course":"LGST612","title":"Responsibility In Bus."},{"Course":"LGST642","Title":"Big Data, Big Resp.","quality":2.27,"clearing_price":299.8,"title_length":97,"dept":"LGST","x":299.8,"y":2.27,"course":"LGST642","title":"Big Data, Big Resp."},{"Course":"LGST693","Title":"Influence","quality":3.415,"clearing_price":2958.7375,"title_length":97,"dept":"LGST","x":2958.7375,"y":3.415,"course":"LGST693","title":"Influence"},{"Course":"LGST806","Title":"Negotiations","quality":3.05428571428571,"clearing_price":1127.13884615385,"title_length":97,"dept":"LGST","x":1127.13884615385,"y":3.05428571428571,"course":"LGST806","title":"Negotiations"},{"Course":"LGST809","Title":"Sports Businss Mgmt.","quality":2.05,"clearing_price":0,"title_length":97,"dept":"LGST","x":0,"y":2.05,"course":"LGST809","title":"Sports Businss Mgmt."},{"Course":"LGST813","Title":"Leg Asp Entreprenrshp: Legal And Transactional Aspects Of Entrepreneurship","quality":3.282,"clearing_price":905.09,"title_length":97,"dept":"LGST","x":905.09,"y":3.282,"course":"LGST813","title":"Leg Asp Entreprenrshp: Legal And Transactional Aspects Of Entrepreneurship"}],"type":"scatter"},{"name":"MGMT","data":[{"Course":"MGMT611","Title":"Managing Est Enterprise: Managing The Established Enterprise","quality":2.690625,"clearing_price":1082.921875,"title_length":97,"dept":"MGMT","x":1082.921875,"y":2.690625,"course":"MGMT611","title":"Managing Est Enterprise: Managing The Established Enterprise"},{"Course":"MGMT612","Title":"Managing Emerg Entrprse: Managing The Emerging Enterprise","quality":2.59933333333333,"clearing_price":160.465,"title_length":97,"dept":"MGMT","x":160.465,"y":2.59933333333333,"course":"MGMT612","title":"Managing Emerg Entrprse: Managing The Emerging Enterprise"},{"Course":"MGMT624","Title":"Leading Diversity In Org","quality":2.75,"clearing_price":0,"title_length":97,"dept":"MGMT","x":0,"y":2.75,"course":"MGMT624","title":"Leading Diversity In Org"},{"Course":"MGMT690","Title":"Managerial Decisn Making","quality":2.59142857142857,"clearing_price":2398.696,"title_length":97,"dept":"MGMT","x":2398.696,"y":2.59142857142857,"course":"MGMT690","title":"Managerial Decisn Making"},{"Course":"MGMT691","Title":"Negotiations","quality":3.05428571428571,"clearing_price":1127.13884615385,"title_length":97,"dept":"MGMT","x":1127.13884615385,"y":3.05428571428571,"course":"MGMT691","title":"Negotiations"},{"Course":"MGMT701","Title":"Strat & Compet Advantage: Strategy And Competitive Advantage","quality":3.41428571428571,"clearing_price":2517.34875,"title_length":97,"dept":"MGMT","x":2517.34875,"y":3.41428571428571,"course":"MGMT701","title":"Strat & Compet Advantage: Strategy And Competitive Advantage"},{"Course":"MGMT711","Title":"Comp Str/Ind Str","quality":2.2,"clearing_price":0,"title_length":97,"dept":"MGMT","x":0,"y":2.2,"course":"MGMT711","title":"Comp Str/Ind Str"},{"Course":"MGMT714","Title":"Value Creation & Value Capture In American Business History","quality":1.9,"clearing_price":0,"title_length":97,"dept":"MGMT","x":0,"y":1.9,"course":"MGMT714","title":"Value Creation & Value Capture In American Business History"},{"Course":"MGMT721","Title":"Corp Dev: Merg & Acquis","quality":2.797,"clearing_price":210.81375,"title_length":97,"dept":"MGMT","x":210.81375,"y":2.797,"course":"MGMT721","title":"Corp Dev: Merg & Acquis"},{"Course":"MGMT729","Title":"Intel Property Strategyy","quality":2.35,"clearing_price":0,"title_length":97,"dept":"MGMT","x":0,"y":2.35,"course":"MGMT729","title":"Intel Property Strategyy"},{"Course":"MGMT731","Title":"Technology Strategy","quality":2.77,"clearing_price":13.345,"title_length":97,"dept":"MGMT","x":13.345,"y":2.77,"course":"MGMT731","title":"Technology Strategy"},{"Course":"MGMT784","Title":"Managerial Econ & Game","quality":1.935,"clearing_price":0,"title_length":97,"dept":"MGMT","x":0,"y":1.935,"course":"MGMT784","title":"Managerial Econ & Game"},{"Course":"MGMT801","Title":"Entrepreneurship","quality":2.69384615384615,"clearing_price":273.171764705882,"title_length":97,"dept":"MGMT","x":273.171764705882,"y":2.69384615384615,"course":"MGMT801","title":"Entrepreneurship"},{"Course":"MGMT804","Title":"Venture Cap & Ent Mgmt","quality":2.667,"clearing_price":224.23875,"title_length":97,"dept":"MGMT","x":224.23875,"y":2.667,"course":"MGMT804","title":"Venture Cap & Ent Mgmt"},{"Course":"MGMT806","Title":"Venture Implementation","quality":2.306,"clearing_price":130.064,"title_length":97,"dept":"MGMT","x":130.064,"y":2.306,"course":"MGMT806","title":"Venture Implementation"},{"Course":"MGMT811","Title":"Entrep Through Acquis.","quality":2.61111111111111,"clearing_price":0,"title_length":97,"dept":"MGMT","x":0,"y":2.61111111111111,"course":"MGMT811","title":"Entrep Through Acquis."},{"Course":"MGMT815","Title":"Sports Businss Mgmt.","quality":2.05,"clearing_price":0,"title_length":97,"dept":"MGMT","x":0,"y":2.05,"course":"MGMT815","title":"Sports Businss Mgmt."}],"type":"scatter"},{"name":"MKTG","data":[{"Course":"MKTG612","Title":"Dynamic Mktg Strategy","quality":2.33916666666667,"clearing_price":587.584375,"title_length":97,"dept":"MKTG","x":587.584375,"y":2.33916666666667,"course":"MKTG612","title":"Dynamic Mktg Strategy"},{"Course":"MKTG712","Title":"Data & Anlz For Mktg Dec","quality":2.48285714285714,"clearing_price":952.587142857143,"title_length":97,"dept":"MKTG","x":952.587142857143,"y":2.48285714285714,"course":"MKTG712","title":"Data & Anlz For Mktg Dec"},{"Course":"MKTG734","Title":"Idea Generation And The Systematic Approach For Creativity","quality":3.23,"clearing_price":483.845,"title_length":97,"dept":"MKTG","x":483.845,"y":3.23,"course":"MKTG734","title":"Idea Generation And The Systematic Approach For Creativity"},{"Course":"MKTG741","Title":"Entrepreneurial Mktg","quality":2.975,"clearing_price":52.1766666666667,"title_length":97,"dept":"MKTG","x":52.1766666666667,"y":2.975,"course":"MKTG741","title":"Entrepreneurial Mktg"},{"Course":"MKTG771","Title":"Models For Mktg Strategy","quality":1.79,"clearing_price":2758.66,"title_length":97,"dept":"MKTG","x":2758.66,"y":1.79,"course":"MKTG771","title":"Models For Mktg Strategy"}],"type":"scatter"},{"name":"OIDD","data":[{"Course":"OIDD515","Title":"Product Design","quality":2.72083333333333,"clearing_price":3892.41,"title_length":97,"dept":"OIDD","x":3892.41,"y":2.72083333333333,"course":"OIDD515","title":"Product Design"},{"Course":"OIDD611","Title":"Quality And Productivity: Managing The Productive Core: Quality And Productivity","quality":3.12181818181818,"clearing_price":681.913333333333,"title_length":97,"dept":"OIDD","x":681.913333333333,"y":3.12181818181818,"course":"OIDD611","title":"Quality And Productivity: Managing The Productive Core: Quality And Productivity"},{"Course":"OIDD612","Title":"Business Analytics","quality":2.82125,"clearing_price":1250.94,"title_length":97,"dept":"OIDD","x":1250.94,"y":2.82125,"course":"OIDD612","title":"Business Analytics"},{"Course":"OIDD613","Title":"Info & Bus Transfrm: Online Innovation: New Patterns Of Power And Profit","quality":1.8025,"clearing_price":0,"title_length":97,"dept":"OIDD","x":0,"y":1.8025,"course":"OIDD613","title":"Info & Bus Transfrm: Online Innovation: New Patterns Of Power And Profit"},{"Course":"OIDD615","Title":"Operations Strategy","quality":2.92227272727273,"clearing_price":898.650555555556,"title_length":97,"dept":"OIDD","x":898.650555555556,"y":2.92227272727273,"course":"OIDD615","title":"Operations Strategy"},{"Course":"OIDD662","Title":"Enabling Technologies: Enabling Technologies","quality":3.005,"clearing_price":849.92,"title_length":97,"dept":"OIDD","x":849.92,"y":3.005,"course":"OIDD662","title":"Enabling Technologies: Enabling Technologies"},{"Course":"OIDD673","Title":"Global Supply Chain Mgmt","quality":2.62,"clearing_price":0,"title_length":97,"dept":"OIDD","x":0,"y":2.62,"course":"OIDD673","title":"Global Supply Chain Mgmt"},{"Course":"OIDD690","Title":"Managerial Decisn Making","quality":2.59142857142857,"clearing_price":2398.696,"title_length":97,"dept":"OIDD","x":2398.696,"y":2.59142857142857,"course":"OIDD690","title":"Managerial Decisn Making"},{"Course":"OIDD691","Title":"Negotiations","quality":3.05428571428571,"clearing_price":1127.13884615385,"title_length":97,"dept":"OIDD","x":1127.13884615385,"y":3.05428571428571,"course":"OIDD691","title":"Negotiations"},{"Course":"OIDD693","Title":"Influence","quality":3.415,"clearing_price":2958.7375,"title_length":97,"dept":"OIDD","x":2958.7375,"y":3.415,"course":"OIDD693","title":"Influence"}],"type":"scatter"},{"name":"REAL","data":[{"Course":"REAL721","Title":"Real Estate Investments","quality":3.02818181818182,"clearing_price":143.451428571429,"title_length":97,"dept":"REAL","x":143.451428571429,"y":3.02818181818182,"course":"REAL721","title":"Real Estate Investments"},{"Course":"REAL821","Title":"Real Estate Development","quality":3.18,"clearing_price":1980.7275,"title_length":97,"dept":"REAL","x":1980.7275,"y":3.18,"course":"REAL821","title":"Real Estate Development"},{"Course":"REAL890","Title":"Int'l Real Est Comparisn","quality":2.85,"clearing_price":0,"title_length":97,"dept":"REAL","x":0,"y":2.85,"course":"REAL890","title":"Int'l Real Est Comparisn"},{"Course":"REAL891","Title":"Real Estate Entrepreneur","quality":2.955,"clearing_price":354.92,"title_length":97,"dept":"REAL","x":354.92,"y":2.955,"course":"REAL891","title":"Real Estate Entrepreneur"}],"type":"scatter"},{"name":"STAT","data":[{"Course":"STAT701","Title":"Modern Data Mining","quality":2.99333333333333,"clearing_price":2434.978,"title_length":97,"dept":"STAT","x":2434.978,"y":2.99333333333333,"course":"STAT701","title":"Modern Data Mining"},{"Course":"STAT705","Title":"Stat Computing With R: Statistical Computing With R","quality":2.59111111111111,"clearing_price":115.571538461538,"title_length":97,"dept":"STAT","x":115.571538461538,"y":2.59111111111111,"course":"STAT705","title":"Stat Computing With R: Statistical Computing With R"},{"Course":"STAT711","Title":"Forecasting Methods Mgmt","quality":1.86,"clearing_price":1291.73,"title_length":97,"dept":"STAT","x":1291.73,"y":1.86,"course":"STAT711","title":"Forecasting Methods Mgmt"},{"Course":"STAT722","Title":"Predictive Analytics: Predictive Analytics For Business","quality":2.686,"clearing_price":151.428333333333,"title_length":97,"dept":"STAT","x":151.428333333333,"y":2.686,"course":"STAT722","title":"Predictive Analytics: Predictive Analytics For Business"},{"Course":"STAT770","Title":"Data Analy & Stat Comp: Data Analytics And Statistical Computing","quality":2.505,"clearing_price":1143.465,"title_length":97,"dept":"STAT","x":1143.465,"y":2.505,"course":"STAT770","title":"Data Analy & Stat Comp: Data Analytics And Statistical Computing"},{"Course":"STAT851","Title":"Fund Of Actuarial Sci I","quality":2.8,"clearing_price":0,"title_length":97,"dept":"STAT","x":0,"y":2.8,"course":"STAT851","title":"Fund Of Actuarial Sci I"},{"Course":"STAT853","Title":"Actuarial Statistics","quality":2.92,"clearing_price":0,"title_length":97,"dept":"STAT","x":0,"y":2.92,"course":"STAT853","title":"Actuarial Statistics"}],"type":"scatter"}],"xAxis":{"type":"linear","title":{"text":"Average Clearing Price"}},"subtitle":{"text":"Value courses are in the top left corner"}},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#004785","#A90533","#06AAFC","#D7BC6A","#B2B6A7","#532A85","#96227D","#2D2C41","EEEDEA","#C5093B"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","B","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":",","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="top-10-and-bottom-10-instructors-for-fall-2018" class="section level2">
 <h2><span class="header-section-number">4.3</span> Top 10 and Bottom 10 Instructors for Fall 2018?</h2>
