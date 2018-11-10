@@ -10,7 +10,7 @@
 
 
 
-<meta name="date" content="2018-11-08" />
+<meta name="date" content="2018-11-09" />
 
 <title>CourseMatch Analytics - Spring 2019</title>
 
@@ -240,7 +240,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">CourseMatch Analytics - Spring 2019</h1>
 <h3 class="subtitle"><em>Data Processing for Google Sheet</em></h3>
-<h4 class="date"><em>2018-11-08</em></h4>
+<h4 class="date"><em>2018-11-09</em></h4>
 
 </div>
 
@@ -392,7 +392,7 @@ clearing_prices &lt;-
   mutate(
     start_date = lubridate::mdy(start_date)
     , Days = stringr::str_extract(`Day(s)`, &quot;^([\\w]+)&quot;)
-    , Quarter = if_else(CU == 1, &quot;Full&quot;, if_else(lubridate::month(start_date) == 8, &quot;Q1&quot;, &quot;Q2&quot;))
+    , Quarter = if_else(CU == 1, &quot;Full&quot;, if_else(lubridate::month(start_date) == 1, &quot;Q1&quot;, &quot;Q2&quot;))
     , start_time = stringr::str_extract(`Day(s)`, &quot;(?:\\S+){2}(\\S+)&quot;)
     , end_time = str_trim(stringr::str_extract(`Day(s)`, &quot;\\s(\\S+)$&quot;))
     , Title = str_to_title(Title)
@@ -523,162 +523,34 @@ Value
 <tbody>
 <tr>
 <td style="padding-left: .5em; padding-right: .5em; text-align: center;">
-2017
-</td>
-<td style="padding-left: .5em; padding-right: .5em; text-align: center;">
-MKTG
-</td>
-<td style="padding-left: .5em; padding-right: .5em; text-align: center;">
-612
-</td>
-<td style="padding-left: .5em; padding-right: .5em; text-align: center;">
-MKTG612
-</td>
-<td style="padding-left: .5em; padding-right: .5em; text-align: center;">
-MKTG612008
-</td>
-<td style="padding-left: .5em; padding-right: .5em; text-align: left;">
-DYNAMIC MKTG STRATEGY
-</td>
-<td style="padding-left: .5em; padding-right: .5em; text-align: left;">
-Bradlow, Eric
-</td>
-<td style="padding-left: .5em; padding-right: .5em; text-align: center;">
-Instructor
-</td>
-<td style="padding-left: .5em; padding-right: .5em; text-align: left;">
-Ability to Stimulate Interest
-</td>
-<td style="padding-left: .5em; padding-right: .5em; text-align: right;">
-3.74
-</td>
-</tr>
-<tr style="background-color: #f7f7f7;">
-<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
-2017
-</td>
-<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
-MGMT
-</td>
-<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
-611
-</td>
-<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
-MGMT611
-</td>
-<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
-MGMT611004
-</td>
-<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: left;">
-MANAGING EST ENTERPRISE
-</td>
-<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: left;">
-MacDuffie, John Paul
-</td>
-<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
-Instructor
-</td>
-<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: left;">
-Ability to Stimulate Interest
-</td>
-<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: right;">
-2.63
-</td>
-</tr>
-<tr>
-<td style="padding-left: .5em; padding-right: .5em; text-align: center;">
-2017
-</td>
-<td style="padding-left: .5em; padding-right: .5em; text-align: center;">
-STAT
-</td>
-<td style="padding-left: .5em; padding-right: .5em; text-align: center;">
-722
-</td>
-<td style="padding-left: .5em; padding-right: .5em; text-align: center;">
-STAT722
-</td>
-<td style="padding-left: .5em; padding-right: .5em; text-align: center;">
-STAT722402
-</td>
-<td style="padding-left: .5em; padding-right: .5em; text-align: left;">
-PREDICTIVE ANALYTICS: Predictive Analytics for Business
-</td>
-<td style="padding-left: .5em; padding-right: .5em; text-align: left;">
-Zhu, Yuancheng
-</td>
-<td style="padding-left: .5em; padding-right: .5em; text-align: center;">
-Instructor
-</td>
-<td style="padding-left: .5em; padding-right: .5em; text-align: left;">
-Instructor Accessibility
-</td>
-<td style="padding-left: .5em; padding-right: .5em; text-align: right;">
-3.08
-</td>
-</tr>
-<tr style="background-color: #f7f7f7;">
-<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
-2018
-</td>
-<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
-MGMT
-</td>
-<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
-613
-</td>
-<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
-MGMT613
-</td>
-<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
-MGMT613701
-</td>
-<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: left;">
-MANAG ESTAB ENTERPRISE
-</td>
-<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: left;">
-MacDuffie, John Paul
-</td>
-<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
-Instructor
-</td>
-<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: left;">
-Ability to Communicate Subject Matter
-</td>
-<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: right;">
-3.55
-</td>
-</tr>
-<tr>
-<td style="padding-left: .5em; padding-right: .5em; text-align: center;">
 2018
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: center;">
-ACCT
+FNCE
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: center;">
-613
+883
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: center;">
-ACCT613
+FNCE883
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: center;">
-ACCT613751
+FNCE883751
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: left;">
-FIN AND MNGL ACCT
+STRATEGIC EQUITY FINANCE
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: left;">
-Lambert, Richard
+Erickson, David
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: center;">
-Instructor
+Course
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: left;">
-Ability to Stimulate Interest
+Recommend to Major?
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: right;">
-3.09
+3
 </td>
 </tr>
 <tr style="background-color: #f7f7f7;">
@@ -689,33 +561,33 @@ Ability to Stimulate Interest
 FNCE
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
-614
+611
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
-FNCE614
+FNCE611
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
-FNCE614004
+FNCE611702
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: left;">
-CORPORATE FNCE (HALF CU)
+CORPORATE FINANCE
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: left;">
-Dieckmann, Stephan
+Roberts, Michael
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
-Course
+Instructor
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: left;">
-Course Quality
+Ability to Stimulate Interest
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: right;">
-3.64
+3.56
 </td>
 </tr>
 <tr>
 <td style="padding-left: .5em; padding-right: .5em; text-align: center;">
-2018
+2017
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: center;">
 MGMT
@@ -727,22 +599,22 @@ MGMT
 MGMT801
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: center;">
-MGMT801004
+MGMT801751
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: left;">
 ENTREPRENEURSHIP
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: left;">
-Mollick, Ethan
+Huang, Laura
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: center;">
 Course
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: left;">
-Amount of Work Required
+Recommend to Major?
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: right;">
-2.64
+3.24
 </td>
 </tr>
 <tr style="background-color: #f7f7f7;">
@@ -750,31 +622,95 @@ Amount of Work Required
 2018
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
-REAL
+MGMT
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
-721
+896
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
-REAL721
+MGMT896
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
-REAL721407
+MGMT896001
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: left;">
-REAL ESTATE INVESTMENTS
+DECISION MAKING LDRSHIP: Decision Making in the Leadership Chair
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: left;">
-Keys, Benjamin
+Lauder, William
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
 Course
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: left;">
-Value of Assigned Readings
+Recommend to Non-Major
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: right;">
-2.64
+3.84
+</td>
+</tr>
+<tr>
+<td style="padding-left: .5em; padding-right: .5em; text-align: center;">
+2018
+</td>
+<td style="padding-left: .5em; padding-right: .5em; text-align: center;">
+BEPP
+</td>
+<td style="padding-left: .5em; padding-right: .5em; text-align: center;">
+761
+</td>
+<td style="padding-left: .5em; padding-right: .5em; text-align: center;">
+BEPP761
+</td>
+<td style="padding-left: .5em; padding-right: .5em; text-align: center;">
+OIDD261402
+</td>
+<td style="padding-left: .5em; padding-right: .5em; text-align: left;">
+RISK ANALY &amp; ENV MGMT: Risk Analysis and Environmental Management
+</td>
+<td style="padding-left: .5em; padding-right: .5em; text-align: left;">
+Kunreuther, Howard
+</td>
+<td style="padding-left: .5em; padding-right: .5em; text-align: center;">
+Course
+</td>
+<td style="padding-left: .5em; padding-right: .5em; text-align: left;">
+Amount Learned
+</td>
+<td style="padding-left: .5em; padding-right: .5em; text-align: right;">
+2.57
+</td>
+</tr>
+<tr style="background-color: #f7f7f7;">
+<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
+2017
+</td>
+<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
+FNCE
+</td>
+<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
+719
+</td>
+<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
+FNCE719
+</td>
+<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
+FNCE719001
+</td>
+<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: left;">
+INTL FINANCIAL MARKETS
+</td>
+<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: left;">
+Jermann, Urban
+</td>
+<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
+Instructor
+</td>
+<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: left;">
+Instructor Accessibility
+</td>
+<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: right;">
+3.27
 </td>
 </tr>
 <tr>
@@ -782,22 +718,86 @@ Value of Assigned Readings
 2017
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: center;">
-STAT
+MKTG
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: center;">
-722
+806
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: center;">
-STAT722
+MKTG806
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: center;">
-STAT722402
+MKTG806402
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: left;">
-PREDICTIVE ANALYTICS: Predictive Analytics for Business
+RETAIL MERCHANDISING
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: left;">
-Zhu, Yuancheng
+Sheridan, Nancy
+</td>
+<td style="padding-left: .5em; padding-right: .5em; text-align: center;">
+Instructor
+</td>
+<td style="padding-left: .5em; padding-right: .5em; text-align: left;">
+Ability to Communicate Subject Matter
+</td>
+<td style="padding-left: .5em; padding-right: .5em; text-align: right;">
+2.21
+</td>
+</tr>
+<tr style="background-color: #f7f7f7;">
+<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
+2018
+</td>
+<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
+MKTG
+</td>
+<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
+777
+</td>
+<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
+MKTG777
+</td>
+<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
+MKTG777001
+</td>
+<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: left;">
+MARKETING STR
+</td>
+<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: left;">
+Yildirim, Pinar
+</td>
+<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: center;">
+Instructor
+</td>
+<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: left;">
+Ability to Communicate Subject Matter
+</td>
+<td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; text-align: right;">
+3.5
+</td>
+</tr>
+<tr>
+<td style="padding-left: .5em; padding-right: .5em; text-align: center;">
+2017
+</td>
+<td style="padding-left: .5em; padding-right: .5em; text-align: center;">
+OIDD
+</td>
+<td style="padding-left: .5em; padding-right: .5em; text-align: center;">
+612
+</td>
+<td style="padding-left: .5em; padding-right: .5em; text-align: center;">
+OIDD612
+</td>
+<td style="padding-left: .5em; padding-right: .5em; text-align: center;">
+OIDD612001
+</td>
+<td style="padding-left: .5em; padding-right: .5em; text-align: left;">
+BUSINESS ANALYTICS
+</td>
+<td style="padding-left: .5em; padding-right: .5em; text-align: left;">
+Gans, Noah F
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: center;">
 Course
@@ -806,7 +806,7 @@ Course
 Amount of Work Required
 </td>
 <td style="padding-left: .5em; padding-right: .5em; text-align: right;">
-2.95
+2.45
 </td>
 </tr>
 <tr style="background-color: #f7f7f7;">
@@ -814,28 +814,28 @@ Amount of Work Required
 2018
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; border-bottom: 2px solid grey; text-align: center;">
-OIDD
+MKTG
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; border-bottom: 2px solid grey; text-align: center;">
-612
+776
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; border-bottom: 2px solid grey; text-align: center;">
-OIDD612
+MKTG776
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; border-bottom: 2px solid grey; text-align: center;">
-OIDD612006
+MKTG776701
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; border-bottom: 2px solid grey; text-align: left;">
-BUSINESS ANALYTICS
+Applied Probability Models in Marketing
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; border-bottom: 2px solid grey; text-align: left;">
-Tsoukalas, Gerry
+Fader, Peter S
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; border-bottom: 2px solid grey; text-align: center;">
-Instructor
+Course
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; border-bottom: 2px solid grey; text-align: left;">
-Instructor Accessibility
+Course Quality
 </td>
 <td style="padding-left: .5em; padding-right: .5em; background-color: #f7f7f7; border-bottom: 2px solid grey; text-align: right;">
 3.21
